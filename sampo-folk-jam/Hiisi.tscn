@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://0ybrgal72yqa"]
+
+[ext_resource type="Script" uid="uid://cq4dvi6jtdnlo" path="res://hiisi.gd" id="1_32pht"]
+[ext_resource type="Texture2D" uid="uid://bojr7qpfd34bt" path="res://Graphics/circle.png" id="1_yberi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_32pht"]
+radius = 11.204955
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vgwi"]
+radius = 37.602966
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwoee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4iei7"]
+radius = 16.446877
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sq6vi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Hiisi" type="CharacterBody2D" unique_id=1547253173]
+script = ExtResource("1_32pht")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1382972490]
+scale = Vector2(0.624, 0.8)
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=95133291]
+offset_left = -29.72973
+offset_top = -41.44144
+offset_right = 10.270269
+offset_bottom = -1.4414406
+scale = Vector2(1.5811965, 2.3896105)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=526153567]
+position = Vector2(0.6830139, 4.7810745)
+scale = Vector2(2.9052947, -3.9668887)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=856484478]
+position = Vector2(0.18764067, 0)
+shape = SubResource("CircleShape2D_32pht")
+
+[node name="PlayerDetect" type="Area2D" parent="." unique_id=1219397886]
+physics_interpolation_mode = 2
+position = Vector2(2.0490415, 8.196159)
+scale = Vector2(2.2399385, 2.9856217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1550398555]
+physics_interpolation_mode = 2
+shape = SubResource("CircleShape2D_4vgwi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695341229]
+sprite_frames = SubResource("SpriteFrames_fwoee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1622765112]
+position = Vector2(0, 2.0490417)
+scale = Vector2(1.0799992, 0.9999999)
+shape = SubResource("CircleShape2D_4iei7")
+
+[node name="HurtLabel" type="Label" parent="." unique_id=481920729]
+visible = false
+offset_left = -20.490355
+offset_top = -34.150677
+offset_right = 19.509645
+offset_bottom = -11.150677
+scale = Vector2(1.2937919, 1.4712288)
+theme_override_colors/font_color = Color(0.84346074, 0.090221204, 0.20350417, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_sq6vi")
+text = "OW"
+
+[node name="Circle" type="Sprite2D" parent="." unique_id=42868204]
+visible = false
+modulate = Color(1, 1, 1, 0.3529412)
+position = Vector2(-2.3841858e-07, 3.949966)
+scale = Vector2(3.429, 3.393)
+texture = ExtResource("1_yberi")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=870064073]
+
+[node name="Hiisi" type="Node2D" parent="." unique_id=1934982338]

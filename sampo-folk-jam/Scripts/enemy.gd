@@ -10,6 +10,9 @@ var current_position : Marker2D
 var dealing_dmg : bool = false
 var health : int = 5
 
+var stuck_timer = 0.0
+var last_position = Vector2.ZERO
+
 func _ready():
 	positions = get_tree().get_nodes_in_group("Waypoints")
 	get_positions()
@@ -21,6 +24,19 @@ func _physics_process(delta):
 		return
 	if global_position.distance_to(current_position.global_position) < 10:
 		get_next_position()
+		
+	if global_position.distance_to(last_position) < 2.0:
+		stuck_timer += delta
+		if stuck_timer > 0.5:
+			get_next_position()
+			stuck_timer = 0.0
+		else:
+			stuck_timer = 0.0
+			
+		last_position = global_position
+		
+		if global_position.distance_to(current_position.global_position) < 10:
+			get_next_position()
 	
 	velocity = direction * speed
 	move_and_slide()

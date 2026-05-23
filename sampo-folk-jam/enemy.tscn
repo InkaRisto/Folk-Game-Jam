@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqtbkh8inf3hn"]
 
 [ext_resource type="Script" uid="uid://t4g1dopj83b2" path="res://Scripts/enemy.gd" id="1_7k104"]
-[ext_resource type="Texture2D" uid="uid://bjqah6ew82rxs" path="res://Graphics/circle.png" id="2_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://bojr7qpfd34bt" path="res://Graphics/circle.png" id="2_4gyqm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 
@@ -11,12 +11,13 @@ radius = 26.319405
 [sub_resource type="SpriteFrames" id="SpriteFrames_7k104"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
-radius = 10.474148
+radius = 16.446877
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7k104"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="EnemyWanderer" type="CharacterBody2D" unique_id=893166257 groups=["Enemy"]]
+collision_layer = 7
 script = ExtResource("1_7k104")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=241499943]
@@ -31,6 +32,7 @@ visible = false
 scale = Vector2(2.1199384, 2.0256212)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1028961498]
+physics_interpolation_mode = 2
 shape = SubResource("CircleShape2D_knq2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1569141043]
@@ -70,6 +72,8 @@ scale = Vector2(3.429, 3.393)
 texture = ExtResource("2_4gyqm")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=352933887]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1238639517]
 
 [connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
 [connection signal="area_exited" from="PlayerDetect" to="." method="_on_player_detect_area_exited"]

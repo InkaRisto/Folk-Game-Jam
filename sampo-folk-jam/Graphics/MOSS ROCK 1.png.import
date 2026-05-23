@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bojr7qpfd34bt"
-path="res://.godot/imported/circle.png-652092f2e522429f182bb0b096353766.ctex"
+uid="uid://bjsxp6tbqie4w"
+path="res://.godot/imported/MOSS ROCK 1.png-c0b817e9c6b6e41a9e07c2a7eaec51f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/circle.png"
-dest_files=["res://.godot/imported/circle.png-652092f2e522429f182bb0b096353766.ctex"]
+source_file="res://Graphics/MOSS ROCK 1.png"
+dest_files=["res://.godot/imported/MOSS ROCK 1.png-c0b817e9c6b6e41a9e07c2a7eaec51f7.ctex"]
 
 [params]
 
