@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dsmsne1acfjnt"]
 
-[ext_resource type="Script" uid="uid://0b87gunehuup" path="res://player_controller.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://emrs1c00xtb6" path="res://Icon.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://0b87gunehuup" path="res://Scripts/player_controller.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://emrs1c00xtb6" path="res://Graphics/Icon.png" id="2_i3pqv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knq2t"]
 bg_color = Color(0, 0, 0, 0.5058824)
@@ -27,6 +27,8 @@ animations = [{
 size = Vector2(43.46965, 11.454414)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 
 [node name="Player" type="CharacterBody2D" unique_id=40729937]
 top_level = true
@@ -61,6 +63,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_knq2t")
 text = " SISU: 3/3 "
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=718598773]
+visible = false
 shape = SubResource("CapsuleShape2D_5x8ra")
 
 [node name="PlayerSprite2D" type="AnimatedSprite2D" parent="." unique_id=529038827]
@@ -85,11 +88,17 @@ scale = Vector2(1, 1.1200012)
 shape = SubResource("RectangleShape2D_o2j4u")
 
 [node name="CombatArea" type="Area2D" parent="." unique_id=1161498629]
-position = Vector2(10.60244, 0)
-scale = Vector2(3.4799995, 2.079999)
+visible = false
+scale = Vector2(3.2848094, 2.4328313)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatArea" unique_id=198386191]
 shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1656396862]
+scale = Vector2(1.2400032, 1.2174295)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1957045789]
+shape = SubResource("CircleShape2D_onrkg")
 
 [connection signal="area_entered" from="CombatArea" to="." method="_on_combat_area_area_entered"]
 [connection signal="body_entered" from="CombatArea" to="." method="_on_combat_area_body_entered"]

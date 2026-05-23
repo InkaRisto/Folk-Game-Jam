@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bbtycl4wjvpbk"]
+
+[ext_resource type="Script" uid="uid://bf4sk4b6ogmhf" path="res://start_menu.gd" id="1_jwbto"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndybt"]
+bg_color = Color(0.6, 0.36862746, 0.6, 0.6039216)
+
+[node name="StartMenu" type="Control" unique_id=675224764]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwbto")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1004254835]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=897726184]
+offset_right = 979.39996
+offset_bottom = 596.60004
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
+
+[node name="ButtonPlay" type="Button" parent="CanvasLayer" unique_id=1466895726]
+offset_left = 357.24045
+offset_top = 149.33823
+offset_right = 653.6682
+offset_bottom = 210.04584
+text = "PLAY
+
+"
+
+[node name="ButtonQuit" type="Button" parent="CanvasLayer" unique_id=1024903053]
+offset_left = 357.24045
+offset_top = 278.17902
+offset_right = 653.6682
+offset_bottom = 338.88663
+text = "QUIT
+"
+
+[connection signal="button_down" from="CanvasLayer/ButtonPlay" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/ButtonQuit" to="." method="_on_button_quit_button_down"]

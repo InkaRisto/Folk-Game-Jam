@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dqtbkh8inf3hn"]
 
-[ext_resource type="Script" uid="uid://t4g1dopj83b2" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="Script" uid="uid://t4g1dopj83b2" path="res://Scripts/enemy.gd" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://bjqah6ew82rxs" path="res://Graphics/circle.png" id="2_4gyqm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knq2t"]
 radius = 26.319405
@@ -16,13 +19,22 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="EnemyWanderer" type="CharacterBody2D" unique_id=893166257 groups=["Enemy"]]
 script = ExtResource("1_7k104")
 
+[node name="Hurtbox" type="Area2D" parent="." unique_id=241499943]
+scale = Vector2(3.2000027, 3.1648784)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=943428995]
+shape = SubResource("CircleShape2D_4gyqm")
+
 [node name="PlayerDetect" type="Area2D" parent="." unique_id=709660755]
-scale = Vector2(4.1199985, 3.8000002)
+physics_interpolation_mode = 2
+visible = false
+scale = Vector2(2.1199384, 2.0256212)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1028961498]
 shape = SubResource("CircleShape2D_knq2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1569141043]
+scale = Vector2(1.11, 1.11)
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=260698910]
 offset_left = -20.490356
@@ -50,4 +62,15 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_7k104")
 text = "OW"
 
+[node name="Circle" type="Sprite2D" parent="." unique_id=2050420427]
+visible = false
+modulate = Color(1, 1, 1, 0.3529412)
+position = Vector2(-2.3841858e-07, 3.949966)
+scale = Vector2(3.429, 3.393)
+texture = ExtResource("2_4gyqm")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=352933887]
+
 [connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="area_exited" from="PlayerDetect" to="." method="_on_player_detect_area_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

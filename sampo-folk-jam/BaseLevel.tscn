@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://7ydt4nf8ic44"]
 
-[ext_resource type="Script" uid="uid://bhogmlj4pigf2" path="res://gamemanager.gd" id="1_knq2t"]
-[ext_resource type="Texture2D" uid="uid://cv44gk8s2veg4" path="res://Tileset.png" id="1_lvb7b"]
+[ext_resource type="Script" uid="uid://bhogmlj4pigf2" path="res://Scripts/gamemanager.gd" id="1_knq2t"]
+[ext_resource type="Texture2D" uid="uid://cv44gk8s2veg4" path="res://Graphics/Tileset.png" id="1_lvb7b"]
 [ext_resource type="PackedScene" uid="uid://dsmsne1acfjnt" path="res://player.tscn" id="3_o2j4u"]
 [ext_resource type="PackedScene" uid="uid://dqtbkh8inf3hn" path="res://enemy.tscn" id="4_knq2t"]
 
@@ -94,3 +94,13 @@ position = Vector2(337.2513, 213.37338)
 
 [node name="Marker2D4" type="Marker2D" parent="WanderingWaypoints" unique_id=1141788277 groups=["Waypoints"]]
 position = Vector2(325.49963, 78.6469)
+
+[node name="ButtonTester" type="Button" parent="." unique_id=489423604]
+visible = false
+offset_left = 138.24191
+offset_top = 93.572815
+offset_right = 254.9006
+offset_bottom = 121.107
+text = "Back to Menu"
+
+[connection signal="button_down" from="ButtonTester" to="." method="_on_button_tester_button_down"]
