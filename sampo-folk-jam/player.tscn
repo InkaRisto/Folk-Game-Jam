@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dsmsne1acfjnt"]
+
+[ext_resource type="Script" uid="uid://0b87gunehuup" path="res://player_controller.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://emrs1c00xtb6" path="res://Icon.png" id="2_i3pqv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knq2t"]
+bg_color = Color(0, 0, 0, 0.5058824)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.6392157)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5x8ra"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o2j4u"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j4u"]
+size = Vector2(43.46965, 11.454414)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+
+[node name="Player" type="CharacterBody2D" unique_id=40729937]
+top_level = true
+z_index = 5
+motion_mode = 1
+script = ExtResource("1_onrkg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2138529692]
+position = Vector2(16, 16)
+zoom = Vector2(1.9, 1.9)
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="LabelVaki" type="Label" parent="Camera2D" unique_id=2147315731]
+unique_name_in_owner = true
+offset_left = -238.31705
+offset_top = -130.3531
+offset_right = -184.31705
+offset_bottom = -107.3531
+theme_override_styles/normal = SubResource("StyleBoxFlat_knq2t")
+text = " VÄKI: 5 "
+
+[node name="LabelSisu" type="Label" parent="Camera2D" unique_id=970939922]
+unique_name_in_owner = true
+offset_left = 150.11267
+offset_top = -130.3531
+offset_right = 236.11267
+offset_bottom = -97.3531
+theme_override_styles/normal = SubResource("StyleBoxFlat_knq2t")
+text = " SISU: 3/3 "
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=718598773]
+shape = SubResource("CapsuleShape2D_5x8ra")
+
+[node name="PlayerSprite2D" type="AnimatedSprite2D" parent="." unique_id=529038827]
+sprite_frames = SubResource("SpriteFrames_o2j4u")
+animation = &"Idle"
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1442356402]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1144677780]
+texture = ExtResource("2_i3pqv")
+
+[node name="Weapon" type="ColorRect" parent="." unique_id=1974680204]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1, 0.32)
+
+[node name="WeaponColl" type="CollisionShape2D" parent="." unique_id=429906201]
+physics_interpolation_mode = 2
+position = Vector2(20.355621, 6.7322235)
+scale = Vector2(1, 1.1200012)
+shape = SubResource("RectangleShape2D_o2j4u")
+
+[node name="CombatArea" type="Area2D" parent="." unique_id=1161498629]
+position = Vector2(10.60244, 0)
+scale = Vector2(3.4799995, 2.079999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatArea" unique_id=198386191]
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[connection signal="area_entered" from="CombatArea" to="." method="_on_combat_area_area_entered"]
+[connection signal="body_entered" from="CombatArea" to="." method="_on_combat_area_body_entered"]
