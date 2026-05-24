@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dxihwbwm0403a"]
+
+[ext_resource type="Script" uid="uid://csyb3jf7ycepg" path="res://vaki_item.gd" id="1_8n52h"]
+[ext_resource type="Texture2D" uid="uid://c48oqa04yr30y" path="res://Graphics/feather item.png" id="2_db5my"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqv6m"]
+
+[node name="VakiItem" type="Area2D" unique_id=1608826025 groups=["Items"]]
+script = ExtResource("1_8n52h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=114967293]
+texture = ExtResource("2_db5my")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2030707736]
+shape = SubResource("CircleShape2D_cqv6m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

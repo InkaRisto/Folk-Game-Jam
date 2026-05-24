@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://co3sbif28ooab"]
 
-[ext_resource type="Texture2D" uid="uid://dmu7mpv2fhsuf" path="res://Graphics/MOSS ROCK WITH FACE.png" id="1_6r1ml"]
 [ext_resource type="Script" uid="uid://hyg8m8sfdgef" path="res://Scripts/rock.gd" id="1_55vvm"]
+[ext_resource type="Texture2D" uid="uid://cuhx1eldnc28v" path="res://Graphics/THROWING ROCK.png" id="2_55vvm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6r1ml"]
 radius = 14.914931
@@ -14,7 +14,7 @@ collision_mask = 0
 script = ExtResource("1_55vvm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=275645520]
-texture = ExtResource("1_6r1ml")
+texture = ExtResource("2_55vvm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=716990608]
 shape = SubResource("CircleShape2D_6r1ml")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dsmsne1acfjnt"]
 
 [ext_resource type="Script" uid="uid://0b87gunehuup" path="res://Scripts/player_controller.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://emrs1c00xtb6" path="res://Graphics/Icon.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://ccx4sohklex3x" path="res://Graphics/character attack draft 2.png" id="2_onrkg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knq2t"]
 bg_color = Color(0, 0, 0, 0.5058824)
@@ -15,13 +15,142 @@ border_color = Color(0, 0, 0, 0.6392157)
 radius = 16.0
 height = 35.66263
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(37, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(74, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(111, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(148, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(185, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(222, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(259, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 37, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(37, 0, 37, 45)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_o2j4u"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onrkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "Attack"
+length = 1.1666666
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.43333334, 0.6, 0.76666665, 0.93333334, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "Ïdle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.54),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sweqy"]
+_data = {
+&"Attack": SubResource("Animation_onrkg"),
+&"Idle": SubResource("Animation_i3pqv"),
+&"RESET": SubResource("Animation_hqtel")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 8.54612
@@ -48,19 +177,19 @@ drag_bottom_margin = 0.0
 
 [node name="LabelVaki" type="Label" parent="Camera2D" unique_id=2147315731]
 unique_name_in_owner = true
-offset_left = -238.31705
-offset_top = -130.3531
-offset_right = -184.31705
-offset_bottom = -107.3531
+offset_left = -235.31705
+offset_top = -283.3531
+offset_right = -163.31705
+offset_bottom = -250.35309
 theme_override_styles/normal = SubResource("StyleBoxFlat_knq2t")
 text = " VÄKI: 5 "
 
 [node name="LabelSisu" type="Label" parent="Camera2D" unique_id=970939922]
 unique_name_in_owner = true
-offset_left = 150.11267
-offset_top = -130.3531
-offset_right = 236.11267
-offset_bottom = -97.3531
+offset_left = 153.11267
+offset_top = -283.3531
+offset_right = 239.11267
+offset_bottom = -250.35309
 theme_override_styles/normal = SubResource("StyleBoxFlat_knq2t")
 text = " SISU: 3 "
 
@@ -69,12 +198,11 @@ shape = SubResource("CapsuleShape2D_5x8ra")
 
 [node name="PlayerSprite2D" type="AnimatedSprite2D" parent="." unique_id=529038827]
 sprite_frames = SubResource("SpriteFrames_o2j4u")
-animation = &"Idle"
+animation = &"Attack"
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=1442356402]
-
-[node name="Icon" type="Sprite2D" parent="." unique_id=1144677780]
-texture = ExtResource("2_i3pqv")
+libraries/ = SubResource("AnimationLibrary_sweqy")
+autoplay = &"Idle"
 
 [node name="Weapon" type="ColorRect" parent="." unique_id=1974680204]
 visible = false

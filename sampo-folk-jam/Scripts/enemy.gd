@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 var speed = 50
 var direction : Vector2 = Vector2.ZERO
 var wander_timer = 0.0
@@ -8,19 +10,24 @@ var temp_positions : Array
 var current_position : Marker2D
 
 var dealing_dmg : bool = false
-var health : int = 5
+var health : int = 10
 
 var stuck_timer = 0.0
 var last_position = Vector2.ZERO
 
-var hiisi = preload("res://Hiisi.tscn")
+var sampo_scene = preload("res://sampo.tscn")
+var appeared = false
 
 func _ready():
+	await get_tree().create_timer(1.8).timeout
+	$AnimationPlayer.play("Appear")
 	positions = get_tree().get_nodes_in_group("Waypoints")
 	get_positions()
 	get_next_position()
 	
 func _physics_process(delta):
+	if !appeared:
+		return
 	if dealing_dmg:
 		velocity = Vector2.ZERO
 		return
@@ -54,7 +61,7 @@ func get_next_position():
 	direction = (current_position.global_position - global_position).normalized()
 
 func enemy_take_damage(dmg: int):
-	#$Animation.Play("Hurt")
+	audio_stream_player_2d.play()
 	$HurtLabel.text = str(-dmg)	
 	health -= dmg
 	$HurtLabel.visible = true
@@ -62,9 +69,10 @@ func enemy_take_damage(dmg: int):
 	$HurtLabel.visible = false
 	if health <= 0:
 		queue_free()
-		var hiisi_instance = hiisi.instantiate()
-		get_parent().add_child(hiisi_instance)
-		hiisi_instance.global_position = Vector2(218, 428)
+		var sampo_instance = sampo_scene.instantiate()
+		get_parent().add_child(sampo_instance)
+		sampo_instance.global_position = Vector2(445, 560)
+
 	
 func _on_player_detect_area_entered(area: Area2D) -> void:
 	if area.name == "Hurtbox" && area.get_parent() == Globals.player:
@@ -85,20 +93,7 @@ func _on_attack_timer_timeout() -> void:
 				if area.name == "Hurtbox" && area.get_parent() == Globals.player:
 					area.get_parent().player_take_damage(1)
 
-func set_animation(direction : float) -> void:
-	#Prioritise Hurt
-	#if $Animation.current_animation == "Hurt" || $Animation.current_animation == "Attack":
-	#	return
-	#Flip player sprite when necessary
-	#$PlayerSprite2D.flip_h = direction < 0 #true/false
-	
-	#Start the animation based on movement
-	#if is_on_floor() and velocity.x != 0:
-	#	$Animation.play("Walk")
-	#elif not is_on_floor() && velocity.y > 0:
-	#	$Animation.play("Land")
-	#elif not is_on_floor() && velocity.y < 0:
-	#	$Animation.play("Jump")
-	#else: 
-	#	$Animation.play("Idle")
-	pass
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Appear":
+		appeared = true
+		$AnimationPlayer.play("Idle")

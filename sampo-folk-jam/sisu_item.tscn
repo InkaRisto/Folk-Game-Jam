@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://xdrj3acppfa0"]
+
+[ext_resource type="Script" uid="uid://bj3sjyxl0en38" path="res://sisu_item.gd" id="1_vlims"]
+[ext_resource type="Texture2D" uid="uid://cvxfodjykk208" path="res://Graphics/bear claw item.png" id="2_5m0ou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_en3w5"]
+
+[node name="SisuItem" type="Area2D" unique_id=1690662334 groups=["Items"]]
+script = ExtResource("1_vlims")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1864230454]
+texture = ExtResource("2_5m0ou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242460033]
+shape = SubResource("CircleShape2D_en3w5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

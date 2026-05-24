@@ -8,20 +8,28 @@ extends CharacterBody2D
 
 @onready var vaki_label = %LabelVaki
 @onready var sisu_label = %LabelSisu
+@onready var player_gets_hit: AudioStreamPlayer2D = $"../Sounds/PlayerGetsHit"
+@onready var sword_hits: AudioStreamPlayer2D = $"../Sounds/SwordHits"
+@onready var player_falls: AudioStreamPlayer2D = $"../Sounds/PlayerFalls"
 
+var sword_sounds : Array
 var attacking = false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
-	#$Animation.play("Idle")
-	Globals.player = self 
-	print("Globals.player at start: " + str(Globals.player))
+	$Animation.play("Idle")
+	Globals.player = self
+	sword_sounds = [
+		preload("res://Sounds/SWORD HIT 2.wav"),
+		preload("res://Sounds/SWORD HIT 3.wav"),
+	]
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		Attack()
-		
+		$Animation.play("Attack")
+
 	#Horizontal movement
 	var directionLR = Input.get_axis("Left", "Right")
 	var directionUD = Input.get_axis("Up", "Down")
@@ -31,7 +39,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, directionLR * speed, acceleration) #Function for applying movement
 		#Player gave movement vertical
 		velocity.y = move_toward(velocity.y, directionUD * speed, acceleration)
-		
+		if !attacking:
+			$Animation.play("Idle")
+
 	else:
 		#No movement input
 		velocity.x = move_toward(velocity.x, 0.0, deceleration)
@@ -43,52 +53,32 @@ func _physics_process(delta: float) -> void:
 
 func Attack() -> void:
 	attacking = true
-	print("Attack")
-	$Weapon.visible = true
-	#$Animation.Play("Attack")
-	await get_tree().create_timer(0.2).timeout
-	$Weapon.visible = false
+	play_sword_sound()
 	if $CombatArea.has_overlapping_areas():
 		for area in $CombatArea.get_overlapping_areas():
 			if area.name == "Hurtbox" && area.get_parent().is_in_group("Enemy"):
 				print("Hit: ", area.get_parent().name)
 				area.get_parent().enemy_take_damage(randi_range(1,3))
 
-func set_animation(direction : float) -> void:
-	#Prioritise Hurt
-	#if $Animation.current_animation == "Hurt" || $Animation.current_animation == "Attack":
-	#	return
-	#Flip player sprite when necessary
-	#$PlayerSprite2D.flip_h = direction < 0 #true/false
-	
-	#Start the animation based on movement
-	#if is_on_floor() and velocity.x != 0:
-	#	$Animation.play("Walk")
-	#elif not is_on_floor() && velocity.y > 0:
-	#	$Animation.play("Land")
-	#elif not is_on_floor() && velocity.y < 0:
-	#	$Animation.play("Jump")
-	#else: 
-	#	$Animation.play("Idle")
-	pass
+func play_sword_sound():
+	sword_hits.stream = sword_sounds[randi() % sword_sounds.size()]
+	sword_hits.play()
 	
 func set_sisu(sisu_amt: int):
 	sisu = sisu_amt
 	sisu_label.text = "SISU: " + str(sisu)
 	
-func set_vaki(vaki_amt: int):
-	vaki = vaki + vaki_amt
+func set_vaki(vaki_change: int):
+	vaki = vaki + vaki_change
 	vaki_label.text = "VÄKI: " + str(vaki)
 	
 func player_take_damage(dmg_amount: int):
+	if dmg_amount > 0:
+		player_gets_hit.play()
 	sisu -= dmg_amount
 	set_sisu(sisu)
 	if sisu <= 0: #Dead
+		player_falls.play()
+		await get_tree().create_timer(0.5).timeout
 		get_tree().call_deferred("change_scene_to_file", "start_menu.tscn") #Back to start screen
-		pass
-
-func _on_combat_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Item"):
-		#Item pop-up
-		#Sisu/Väki
-		pass
+		

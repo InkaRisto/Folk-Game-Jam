@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://0ybrgal72yqa"]
 
 [ext_resource type="Script" uid="uid://cq4dvi6jtdnlo" path="res://Scripts/hiisi.gd" id="1_4iei7"]
-[ext_resource type="Texture2D" uid="uid://bojr7qpfd34bt" path="res://Graphics/circle.png" id="1_yberi"]
 [ext_resource type="Texture2D" uid="uid://cbxeoi778eope" path="res://Graphics/AnimHiisiIdle.png" id="2_4iei7"]
+[ext_resource type="Texture2D" uid="uid://d4el3pqaec7qa" path="res://Graphics/AnimHiisiSwing.png" id="3_rpw8q"]
 [ext_resource type="Texture2D" uid="uid://qotjaldlxfqh" path="res://Graphics/AnimHiisiWalk.png" id="3_sq6vi"]
+[ext_resource type="Texture2D" uid="uid://cv865lmvn3njj" path="res://Graphics/AnimHiisiRock.png" id="4_eohjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32pht"]
 radius = 12.5373125
@@ -34,6 +35,66 @@ region = Rect2(331, 0, 78, 93)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmhno"]
 atlas = ExtResource("2_4iei7")
 region = Rect2(410, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjtue"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(0, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm5mc"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(76, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8utrj"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(152, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3swag"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(228, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_man5c"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(304, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsuuo"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(380, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf1w4"]
+atlas = ExtResource("3_rpw8q")
+region = Rect2(456, 0, 76, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qiga"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(0, 0, 55, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdu6n"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(57, 0, 55, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02cqy"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(120, 0, 58, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieffs"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(180, 0, 58, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tprd"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(252, 0, 61, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmccr"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(339, 0, 65, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfstv"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(406, 0, 65, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qenar"]
+atlas = ExtResource("4_eohjm")
+region = Rect2(473, 0, 65, 97)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6w40h"]
 atlas = ExtResource("3_sq6vi")
@@ -87,6 +148,61 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjtue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm5mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8utrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3swag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_man5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsuuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf1w4")
+}],
+"loop": true,
+"name": &"Swing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qiga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdu6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02cqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieffs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tprd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmccr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfstv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qenar")
+}],
+"loop": true,
+"name": &"ThrowRock",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,6 +298,19 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_fwoee"]
 resource_name = "Swing"
+length = 1.3333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333333, 0.4, 0.56666666, 0.7, 0.93333334, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
 
 [sub_resource type="Animation" id="Animation_4iei7"]
 resource_name = "ThrowRock"
@@ -215,6 +344,7 @@ _data = {
 }
 
 [node name="Hiisi" type="CharacterBody2D" unique_id=1547253173]
+texture_filter = 1
 script = ExtResource("1_4iei7")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=526153567]
@@ -236,6 +366,7 @@ position = Vector2(0, -2.058907)
 shape = SubResource("CircleShape2D_4vgwi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695341229]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fwoee")
 animation = &"Idle"
 frame = 1
@@ -256,13 +387,6 @@ theme_override_colors/font_color = Color(0.84346074, 0.090221204, 0.20350417, 1)
 theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_sq6vi")
 text = "OW"
-
-[node name="Circle" type="Sprite2D" parent="." unique_id=42868204]
-visible = false
-modulate = Color(1, 1, 1, 0.3529412)
-position = Vector2(2.0490417, 8.196159)
-scale = Vector2(3.429, 3.393)
-texture = ExtResource("1_yberi")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=870064073]
 wait_time = 3.0

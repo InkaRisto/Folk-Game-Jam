@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://bs3u3drnykkgq"]
 
+[ext_resource type="Script" uid="uid://buo3vvwir5ptm" path="res://collectable.gd" id="1_rc3fo"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_hilw2"]
 radius = 14.228731
 
 [node name="Collectable" type="Area2D" unique_id=1003442862]
+script = ExtResource("1_rc3fo")
+item_type = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=658657970]
 

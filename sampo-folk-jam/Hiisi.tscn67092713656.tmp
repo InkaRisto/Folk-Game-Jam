@@ -1,0 +1,277 @@
+[gd_scene format=3 uid="uid://0ybrgal72yqa"]
+
+[ext_resource type="Script" uid="uid://cq4dvi6jtdnlo" path="res://Scripts/hiisi.gd" id="1_4iei7"]
+[ext_resource type="Texture2D" uid="uid://bojr7qpfd34bt" path="res://Graphics/circle.png" id="1_yberi"]
+[ext_resource type="Texture2D" uid="uid://cbxeoi778eope" path="res://Graphics/AnimHiisiIdle.png" id="2_4iei7"]
+[ext_resource type="Texture2D" uid="uid://qotjaldlxfqh" path="res://Graphics/AnimHiisiWalk.png" id="3_sq6vi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_32pht"]
+radius = 12.5373125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vgwi"]
+radius = 18.311441
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpw8q"]
+atlas = ExtResource("2_4iei7")
+region = Rect2(15, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eohjm"]
+atlas = ExtResource("2_4iei7")
+region = Rect2(94, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdqxp"]
+atlas = ExtResource("2_4iei7")
+region = Rect2(173, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1cb6"]
+atlas = ExtResource("2_4iei7")
+region = Rect2(252, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o4y1"]
+atlas = ExtResource("2_4iei7")
+region = Rect2(331, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmhno"]
+atlas = ExtResource("2_4iei7")
+region = Rect2(410, 0, 78, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w40h"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(5, 0, 71, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46w1o"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(78, 0, 71, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x2qv"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(151, 0, 71, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5klx"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(224, 0, 71, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb6b4"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(297, 0, 71, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23jw7"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(370, 0, 71, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpm7b"]
+atlas = ExtResource("3_sq6vi")
+region = Rect2(443, 0, 71, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwoee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpw8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eohjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdqxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1cb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4o4y1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmhno")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w40h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46w1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x2qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5klx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb6b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23jw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpm7b")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4iei7"]
+radius = 16.446877
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sq6vi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_32pht"]
+resource_name = "Idle"
+length = 3.6666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Idle", &"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.6333333, 1.2, 1.7333333, 2.1, 2.6666667, 3.2333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0]
+}
+
+[sub_resource type="Animation" id="Animation_4vgwi"]
+resource_name = "Laugh"
+
+[sub_resource type="Animation" id="Animation_rpw8q"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_fwoee"]
+resource_name = "Swing"
+
+[sub_resource type="Animation" id="Animation_4iei7"]
+resource_name = "ThrowRock"
+
+[sub_resource type="Animation" id="Animation_sq6vi"]
+resource_name = "Walk"
+length = 1.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.76, 0.97, 1.3, 1.49),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpw8q"]
+_data = {
+&"Idle": SubResource("Animation_32pht"),
+&"Laugh": SubResource("Animation_4vgwi"),
+&"RESET": SubResource("Animation_rpw8q"),
+&"Swing": SubResource("Animation_fwoee"),
+&"ThrowRock": SubResource("Animation_4iei7"),
+&"Walk": SubResource("Animation_sq6vi")
+}
+
+[node name="Hiisi" type="CharacterBody2D" unique_id=1547253173]
+script = ExtResource("1_4iei7")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=526153567]
+position = Vector2(0.6830139, 4.7810745)
+scale = Vector2(2.9052947, -3.9668887)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=856484478]
+position = Vector2(0.18764067, 0)
+shape = SubResource("CircleShape2D_32pht")
+
+[node name="PlayerDetect" type="Area2D" parent="." unique_id=1219397886]
+physics_interpolation_mode = 2
+position = Vector2(2.0490415, 8.196159)
+scale = Vector2(2.2399385, 2.9856217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1550398555]
+physics_interpolation_mode = 2
+position = Vector2(0, -2.058907)
+shape = SubResource("CircleShape2D_4vgwi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695341229]
+sprite_frames = SubResource("SpriteFrames_fwoee")
+animation = &"Idle"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1622765112]
+position = Vector2(0, 2.0490417)
+scale = Vector2(1.0799992, 0.9999999)
+shape = SubResource("CircleShape2D_4iei7")
+
+[node name="HurtLabel" type="Label" parent="." unique_id=481920729]
+visible = false
+offset_left = -20.490355
+offset_top = -34.150677
+offset_right = 19.509645
+offset_bottom = -11.150677
+scale = Vector2(1.2937919, 1.4712288)
+theme_override_colors/font_color = Color(0.84346074, 0.090221204, 0.20350417, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_sq6vi")
+text = "OW"
+
+[node name="Circle" type="Sprite2D" parent="." unique_id=42868204]
+visible = false
+modulate = Color(1, 1, 1, 0.3529412)
+position = Vector2(2.0490417, 8.196159)
+scale = Vector2(3.429, 3.393)
+texture = ExtResource("1_yberi")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=870064073]
+wait_time = 3.0
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1646691753]
+libraries/ = SubResource("AnimationLibrary_rpw8q")
+autoplay = &"Idle"
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

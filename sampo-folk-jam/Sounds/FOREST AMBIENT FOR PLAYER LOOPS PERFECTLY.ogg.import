@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ba5n4jmgq0lbr"
+path="res://.godot/imported/FOREST AMBIENT FOR PLAYER LOOPS PERFECTLY.ogg-a9b7dd010b411588383e358d6133897f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/FOREST AMBIENT FOR PLAYER LOOPS PERFECTLY.ogg"
+dest_files=["res://.godot/imported/FOREST AMBIENT FOR PLAYER LOOPS PERFECTLY.ogg-a9b7dd010b411588383e358d6133897f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

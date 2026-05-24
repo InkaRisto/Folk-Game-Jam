@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bf4sk4b6ogmhf" path="res://Scripts/start_menu.gd" id="1_jwbto"]
 [ext_resource type="Texture2D" uid="uid://ctpu8mragch3k" path="res://Graphics/UI_menurunes_01.png" id="2_ia0g5"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndybt"]
-bg_color = Color(0.6, 0.36862746, 0.6, 0.6039216)
+[ext_resource type="Texture2D" uid="uid://dysten0kc58dc" path="res://Sounds/Menu Background.png" id="3_ctwoq"]
+[ext_resource type="AudioStream" uid="uid://dol2w5fit5on5" path="res://Sounds/MENU SCREEN SOUND 1.wav" id="3_v2mkm"]
+[ext_resource type="AudioStream" uid="uid://mljo11xm32o4" path="res://Sounds/MENU SCREEN SOUND 2.wav" id="4_ctwoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ia0g5"]
 
@@ -30,17 +30,28 @@ grow_vertical = 2
 script = ExtResource("1_jwbto")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1004254835]
+scale = Vector2(1.83, 1.83)
+transform = Transform2D(1.83, 0, 0, 1.83, 0, 0)
+follow_viewport_enabled = true
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=897726184]
-offset_right = 979.39996
-offset_bottom = 596.60004
-theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1190025723]
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 979.2349
+offset_bottom = 550.81964
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=2127213265]
+show_behind_parent = true
+z_index = -2
+offset_right = 1049.1803
+offset_bottom = 603.2786
+texture = ExtResource("3_ctwoq")
 
 [node name="ButtonPlay" type="Button" parent="CanvasLayer" unique_id=1466895726]
-offset_left = 336.0
-offset_top = 176.0
-offset_right = 475.0
-offset_bottom = 215.86603
+offset_left = 419.67212
+offset_top = 201.0929
+offset_right = 558.6721
+offset_bottom = 240.95892
 scale = Vector2(2, 2)
 theme_override_icons/icon = SubResource("AtlasTexture_ia0g5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ia0g5")
@@ -49,13 +60,30 @@ text = "
 icon = SubResource("AtlasTexture_vpdu5")
 
 [node name="ButtonQuit" type="Button" parent="CanvasLayer" unique_id=1024903053]
-offset_left = 432.0
-offset_top = 288.0
-offset_right = 473.0
-offset_bottom = 329.11432
+offset_left = 515.6721
+offset_top = 313.09286
+offset_right = 556.6721
+offset_bottom = 354.20718
 scale = Vector2(2, 2)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpdu5")
 icon = SubResource("AtlasTexture_v2mkm")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2025322407]
+position = Vector2(336, 176)
+scale = Vector2(2, 2)
+stream = ExtResource("3_v2mkm")
+volume_db = -6.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=587329241]
+position = Vector2(336, 176)
+scale = Vector2(2, 2)
+stream = ExtResource("4_ctwoq")
+volume_db = -6.0
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=756854546]
+autoplay = true
+
 [connection signal="button_down" from="CanvasLayer/ButtonPlay" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/ButtonPlay" to="." method="_on_button_play_mouse_entered"]
 [connection signal="button_down" from="CanvasLayer/ButtonQuit" to="." method="_on_button_quit_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/ButtonQuit" to="." method="_on_button_quit_mouse_entered"]

@@ -2,19 +2,165 @@
 
 [ext_resource type="Script" uid="uid://t4g1dopj83b2" path="res://Scripts/enemy.gd" id="1_7k104"]
 [ext_resource type="Texture2D" uid="uid://bojr7qpfd34bt" path="res://Graphics/circle.png" id="2_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://c7x21n4j3n8av" path="res://Graphics/AnimShroudAppear.png" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://81wtklygd7jm" path="res://Graphics/AnimShroudIdle.png" id="3_iifgy"]
+[ext_resource type="AudioStream" uid="uid://4op1lhwvjn6j" path="res://Sounds/SHADOW MINION TAKING DAMAGE 1.wav" id="5_epg4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knq2t"]
 radius = 26.319405
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(18, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(86, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(290, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(358, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb8ge"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(426, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1ltt"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(358, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxifv"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(426, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwjut"]
+atlas = ExtResource("3_iifgy")
+region = Rect2(358, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0g06"]
+atlas = ExtResource("3_iifgy")
+region = Rect2(426, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar8e5"]
+atlas = ExtResource("3_iifgy")
+region = Rect2(358, 18, 63, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doop2"]
+atlas = ExtResource("3_iifgy")
+region = Rect2(426, 18, 63, 62)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7k104"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb8ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1ltt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxifv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwjut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0g06")
+}],
+"loop": false,
+"name": &"Appear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doop2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
 radius = 16.446877
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7k104"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_e1ltt"]
+resource_name = "Appear"
+length = 2.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.03333333, 0.56666666, 1.1966667, 1.7966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_5hcft"]
+resource_name = "Idle"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 0.76666665, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_dxifv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwjut"]
+_data = {
+&"Appear": SubResource("Animation_e1ltt"),
+&"Idle": SubResource("Animation_5hcft"),
+&"RESET": SubResource("Animation_dxifv")
+}
 
 [node name="EnemyWanderer" type="CharacterBody2D" unique_id=893166257 groups=["Enemy"]]
 collision_layer = 7
@@ -35,18 +181,11 @@ scale = Vector2(2.1199384, 2.0256212)
 physics_interpolation_mode = 2
 shape = SubResource("CircleShape2D_knq2t")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1569141043]
-scale = Vector2(1.11, 1.11)
-
-[node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=260698910]
-offset_left = -20.490356
-offset_top = -19.807388
-offset_right = 19.509644
-offset_bottom = 20.192612
-color = Color(0.24104936, 0.061675526, 0.24104936, 1)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2050919621]
 sprite_frames = SubResource("SpriteFrames_7k104")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=659874807]
 scale = Vector2(1.0799992, 0.9999999)
@@ -73,8 +212,13 @@ texture = ExtResource("2_4gyqm")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=352933887]
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1238639517]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1803812029]
+libraries/ = SubResource("AnimationLibrary_pwjut")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1182794410]
+stream = ExtResource("5_epg4t")
 
 [connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
 [connection signal="area_exited" from="PlayerDetect" to="." method="_on_player_detect_area_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

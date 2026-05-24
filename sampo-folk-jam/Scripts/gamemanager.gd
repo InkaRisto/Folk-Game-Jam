@@ -1,8 +1,8 @@
 extends Node2D
 
-#Hiisi plans
-#if dead:
-#		get_tree().call_deferred("change_scene_to_file", "win.tscn")
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Exit"):
+		get_tree().change_scene_to_file("res://start_menu.tscn")
 
 func _on_button_tester_button_down() -> void:
 		get_tree().change_scene_to_file("start_menu.tscn") 
