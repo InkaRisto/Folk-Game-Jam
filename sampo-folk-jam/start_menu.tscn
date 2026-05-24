@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://bbtycl4wjvpbk"]
 
-[ext_resource type="Script" uid="uid://bf4sk4b6ogmhf" path="res://start_menu.gd" id="1_jwbto"]
+[ext_resource type="Script" uid="uid://bf4sk4b6ogmhf" path="res://Scripts/start_menu.gd" id="1_jwbto"]
+[ext_resource type="Texture2D" uid="uid://ctpu8mragch3k" path="res://Graphics/UI_menurunes_01.png" id="2_ia0g5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndybt"]
 bg_color = Color(0.6, 0.36862746, 0.6, 0.6039216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia0g5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ia0g5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpdu5"]
+atlas = ExtResource("2_ia0g5")
+region = Rect2(1, 1, 127, 30)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpdu5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2mkm"]
+atlas = ExtResource("2_ia0g5")
+region = Rect2(159, 0, 33, 32)
 
 [node name="StartMenu" type="Control" unique_id=675224764]
 layout_mode = 3
@@ -22,21 +37,25 @@ offset_bottom = 596.60004
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndybt")
 
 [node name="ButtonPlay" type="Button" parent="CanvasLayer" unique_id=1466895726]
-offset_left = 357.24045
-offset_top = 149.33823
-offset_right = 653.6682
-offset_bottom = 210.04584
-text = "PLAY
-
+offset_left = 336.0
+offset_top = 176.0
+offset_right = 475.0
+offset_bottom = 215.86603
+scale = Vector2(2, 2)
+theme_override_icons/icon = SubResource("AtlasTexture_ia0g5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ia0g5")
+text = "
 "
+icon = SubResource("AtlasTexture_vpdu5")
 
 [node name="ButtonQuit" type="Button" parent="CanvasLayer" unique_id=1024903053]
-offset_left = 357.24045
-offset_top = 278.17902
-offset_right = 653.6682
-offset_bottom = 338.88663
-text = "QUIT
-"
+offset_left = 432.0
+offset_top = 288.0
+offset_right = 473.0
+offset_bottom = 329.11432
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpdu5")
+icon = SubResource("AtlasTexture_v2mkm")
 
 [connection signal="button_down" from="CanvasLayer/ButtonPlay" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="CanvasLayer/ButtonQuit" to="." method="_on_button_quit_button_down"]

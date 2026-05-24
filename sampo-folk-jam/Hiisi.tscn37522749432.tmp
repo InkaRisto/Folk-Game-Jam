@@ -1,15 +1,40 @@
 [gd_scene format=3 uid="uid://0ybrgal72yqa"]
 
-[ext_resource type="Script" uid="uid://cq4dvi6jtdnlo" path="res://Scripts/hiisi.gd" id="1_4iei7"]
 [ext_resource type="Texture2D" uid="uid://bojr7qpfd34bt" path="res://Graphics/circle.png" id="1_yberi"]
 [ext_resource type="Texture2D" uid="uid://cbxeoi778eope" path="res://Graphics/AnimHiisiIdle.png" id="2_4iei7"]
+[ext_resource type="Script" uid="uid://xo51dsxhgvv1" path="res://animation_tree.gd" id="3_4vgwi"]
 [ext_resource type="Texture2D" uid="uid://qotjaldlxfqh" path="res://Graphics/AnimHiisiWalk.png" id="3_sq6vi"]
 
+[sub_resource type="GDScript" id="GDScript_fwoee"]
+script/source = "enum State {IDLE, CHASE, MELEE, RANGED}
+var state = State.IDLE
+var player_distance : float
+
+func _physics_process(delta):
+	player_distance = global_position.distance_to(Globals.player.global_position)
+	match state:
+		State.IDLE:
+			$AnimatedSprite2D.play(\"idle\")
+			if player_distance < 300:
+				state = State.CHASE
+		State.CHASE:
+			$AnimatedSprite2D.play(\"walk\")
+			chase_player()
+			if player_distance < 80:
+				state = State.MELEE
+			elif player_distance < 200:
+				state = State.RANGED
+		State.MELEE:
+			melee_attack()
+		State.RANGED:
+			ranged_attack()
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_32pht"]
-radius = 12.5373125
+radius = 11.204955
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vgwi"]
-radius = 18.311441
+radius = 37.602966
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpw8q"]
 atlas = ExtResource("2_4iei7")
@@ -123,7 +148,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Animation" id="Animation_32pht"]
 resource_name = "Idle"
-length = 3.6666667
+length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -144,10 +169,24 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 0.6333333, 1.2, 1.7333333, 2.1, 2.6666667, 3.2333333),
+"times": PackedFloat32Array(0.033333335, 0.46666667, 0.9, 1.5, 1.8333334, 2.2666667, 2.6333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.9666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"increase_idle_count"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_4vgwi"]
@@ -188,20 +227,32 @@ resource_name = "ThrowRock"
 
 [sub_resource type="Animation" id="Animation_sq6vi"]
 resource_name = "Walk"
-length = 1.7
+length = 1.3
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.76, 0.97, 1.3, 1.49),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.8, 0.9, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpw8q"]
@@ -214,8 +265,70 @@ _data = {
 &"Walk": SubResource("Animation_sq6vi")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4vgwi"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rpw8q"]
+animation = &"Laugh"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fwoee"]
+animation = &"Swing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4iei7"]
+animation = &"ThrowRock"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sq6vi"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sq6vi"]
+advance_mode = 2
+advance_condition = &"nearby"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rpw8q"]
+advance_mode = 2
+advance_condition = &"throw_rock"
+advance_expression = "
+"
+metadata/throw_rock = false
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eohjm"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cdqxp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s1cb6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4o4y1"]
+advance_mode = 2
+advance_condition = &"nearby"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jmhno"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4iei7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fwoee"]
+states/Idle/node = SubResource("AnimationNodeAnimation_4vgwi")
+states/Idle/position = Vector2(268, 94)
+states/Laugh/node = SubResource("AnimationNodeAnimation_rpw8q")
+states/Laugh/position = Vector2(101, 87)
+states/Start/position = Vector2(101, 94)
+states/Swing/node = SubResource("AnimationNodeAnimation_fwoee")
+states/Swing/position = Vector2(420, 190)
+states/ThrowRock/node = SubResource("AnimationNodeAnimation_4iei7")
+states/ThrowRock/position = Vector2(420, 0)
+states/Walk/node = SubResource("AnimationNodeAnimation_sq6vi")
+states/Walk/position = Vector2(497, 98)
+transitions = ["Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_sq6vi"), "Idle", "ThrowRock", SubResource("AnimationNodeStateMachineTransition_rpw8q"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_eohjm"), "ThrowRock", "Idle", SubResource("AnimationNodeStateMachineTransition_cdqxp"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_s1cb6"), "Walk", "Swing", SubResource("AnimationNodeStateMachineTransition_4o4y1"), "Walk", "End", SubResource("AnimationNodeStateMachineTransition_jmhno"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_4iei7")]
+graph_offset = Vector2(-91, -42)
+
 [node name="Hiisi" type="CharacterBody2D" unique_id=1547253173]
-script = ExtResource("1_4iei7")
+script = SubResource("GDScript_fwoee")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=526153567]
 position = Vector2(0.6830139, 4.7810745)
@@ -232,7 +345,6 @@ scale = Vector2(2.2399385, 2.9856217)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1550398555]
 physics_interpolation_mode = 2
-position = Vector2(0, -2.058907)
 shape = SubResource("CircleShape2D_4vgwi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695341229]
@@ -258,20 +370,25 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sq6vi")
 text = "OW"
 
 [node name="Circle" type="Sprite2D" parent="." unique_id=42868204]
-visible = false
 modulate = Color(1, 1, 1, 0.3529412)
 position = Vector2(2.0490417, 8.196159)
 scale = Vector2(3.429, 3.393)
 texture = ExtResource("1_yberi")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=870064073]
-wait_time = 3.0
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=1646691753]
 libraries/ = SubResource("AnimationLibrary_rpw8q")
 autoplay = &"Idle"
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
-[connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="OnPause" type="Node" parent="." unique_id=1189828683]
+
+[node name="AnimationTree" type="AnimationTree" parent="OnPause" unique_id=595250865]
+active = false
+deterministic = false
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_fwoee")
+anim_player = NodePath("../../Animation")
+parameters/conditions/nearby = false
+parameters/conditions/throw_rock = false
+script = ExtResource("3_4vgwi")

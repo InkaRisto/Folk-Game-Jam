@@ -13,6 +13,8 @@ var health : int = 5
 var stuck_timer = 0.0
 var last_position = Vector2.ZERO
 
+var hiisi = preload("res://Hiisi.tscn")
+
 func _ready():
 	positions = get_tree().get_nodes_in_group("Waypoints")
 	get_positions()
@@ -60,11 +62,11 @@ func enemy_take_damage(dmg: int):
 	$HurtLabel.visible = false
 	if health <= 0:
 		queue_free()
-		$"../ButtonTester".visible = true
-
+		var hiisi_instance = hiisi.instantiate()
+		get_parent().add_child(hiisi_instance)
+		hiisi_instance.global_position = Vector2(218, 428)
 	
 func _on_player_detect_area_entered(area: Area2D) -> void:
-	print("Player detected")
 	if area.name == "Hurtbox" && area.get_parent() == Globals.player:
 		dealing_dmg = true
 		$AttackTimer.start()

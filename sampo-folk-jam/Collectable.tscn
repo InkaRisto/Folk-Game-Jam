@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bs3u3drnykkgq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hilw2"]
+radius = 14.228731
+
+[node name="Collectable" type="Area2D" unique_id=1003442862]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=658657970]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1769762447]
+shape = SubResource("CircleShape2D_hilw2")
